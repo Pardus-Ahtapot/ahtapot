@@ -1,0 +1,35 @@
+---
+# Gitolite Repolari icin gerekli degiskenleri iceren dosyadir.
+gitolite:
+   name: "gitolite"
+   ssh-pub: "/home/gitolite/.ssh/id_rsa.pub"
+   admin-repo:
+      addr: "gitolite@localhost:gitolite-admin.git"
+      dest: "/home/gitolite/gitolite-admin"
+      version: "master"
+      key: "/home/gitolite/.ssh/id_rsa" 
+   conf:
+      src: "gitolite.conf.j2"
+      dest: "/home/gitolite/gitolite-admin/conf/gitolite.conf"
+      owner: "gitolite"
+      group: "gitolite"
+      mode: "0644"
+gitolite_commands:
+      command01: "/usr/bin/git -C {{ gitolite['admin-repo']['dest']}} add --all" 
+      command02: "/usr/bin/git config --global user.email \"gitolite-admin@ahtapot\""
+      command03: "/usr/bin/git config --global user.name \"gitolite-admin\""
+      command04: "/usr/bin/git -C {{ gitolite['admin-repo']['dest']}} commit -m \"Playbook tarafindan yapilmistir.\""
+      command05: "/usr/bin/git -C {{ gitolite['admin-repo']['dest']}} push origin master"
+gitolite_repo_users:
+   user01:
+      src: "/home/ahtapotops/.ssh/id_rsa.pub"
+      dest: "/home/gitolite/gitolite-admin/keydir/ahtapotops.pub"
+      owner: "gitolite"
+      group: "gitolite"
+      mode: "0644"
+#   userXX:
+#      src:
+#      dest:
+#      owner:
+#      group:
+#      mode:

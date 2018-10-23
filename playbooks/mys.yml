@@ -1,0 +1,45 @@
+---
+# Calistirildigi sunucuya MYS rolunu atar.
+- hosts: mys
+  remote_user: ahtapotops
+  sudo: yes
+  vars_files:
+  - /etc/ansible/roles/base/vars/group.yml
+  - /etc/ansible/roles/base/vars/user.yml
+  - /etc/ansible/roles/base/vars/repo.yml
+  - /etc/ansible/roles/base/vars/ntp.yml
+  - /etc/ansible/roles/base/vars/rsyslog.yml
+  - /etc/ansible/roles/base/vars/package.yml
+  - /etc/ansible/roles/base/vars/kernelmodules_remove.yml
+  - /etc/ansible/roles/base/vars/kernelmodules_blacklist.yml
+  - /etc/ansible/roles/base/vars/host.yml
+  - /etc/ansible/roles/base/vars/audit.yml
+  - /etc/ansible/roles/base/vars/sudo.yml
+  - /etc/ansible/roles/base/vars/ssh.yml
+  - /etc/ansible/roles/base/vars/grub.yml
+  - /etc/ansible/roles/base/vars/logger.yml
+  - /etc/ansible/roles/base/vars/logrotate.yml
+  - /etc/ansible/roles/base/vars/directory.yml
+  - /etc/ansible/roles/base/vars/profile.yml
+  roles:
+  - { role: base }
+
+- hosts: mys 
+  remote_user: ahtapotops
+  vars_files:
+  - /etc/ansible/roles/gitolite/vars/admin.yml
+  - /etc/ansible/roles/gitolite/vars/packages.yml
+  - /etc/ansible/roles/gitolite/vars/conf.yml
+  - /etc/ansible/roles/gitolite/vars/hooks.yml
+  roles:
+  - { role: gitolite }
+
+- hosts: mys 
+  remote_user: ahtapotops
+  vars_files:
+  - /etc/ansible/roles/ansible/vars/package.yml
+  - /etc/ansible/roles/ansible/vars/ansible.yml
+  - /etc/ansible/roles/ansible/vars/directory.yml
+  - /etc/ansible/roles/ansible/vars/git.yml
+  roles:
+  - { role: ansible }

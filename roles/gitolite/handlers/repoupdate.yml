@@ -1,0 +1,6 @@
+---
+- name: Gitolite-Admin repo degisiklikleri uygulaniyor.
+  command: "{{ item.value }}"
+  with_dict: "gitolite_commands"
+  sudo: "yes"
+  sudo_user: "gitolite"

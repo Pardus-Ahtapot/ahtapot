@@ -1,0 +1,6 @@
+---
+# Gitolite rolunun gorevlerini iceren dosyadir.
+- include: admin.yml
+- include: install.yml
+- include: conf.yml
+- include: hooks.yml

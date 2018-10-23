@@ -1,0 +1,34 @@
+---
+- name: Gitolite-Admin reposu aliniyor.
+  git:
+     repo: "{{ gitolite['admin-repo']['addr'] }}"
+     dest: "{{ gitolite['admin-repo']['dest'] }}"
+     version: "{{ gitolite['admin-repo']['version'] }}"
+     key_file: "{{ gitolite['admin-repo']['key'] }}"
+     accept_hostkey: "yes"
+  sudo: "yes"
+  sudo_user: "gitolite"
+  tags: admin_repo
+
+- name: MYS ve GDYS repolari olusturuluyor.
+  template:
+     src: "{{ gitolite['conf']['src'] }}"
+     dest: "{{ gitolite['conf']['dest'] }}"
+     owner: "{{ gitolite['conf']['owner'] }}"
+     group: "{{ gitolite['conf']['group'] }}"
+     mode: "{{ gitolite['conf']['mode'] }}"
+  notify: Gitolite-Admin repo degisiklikleri uygulaniyor.
+  sudo: "yes"
+  tags: mys_repo
+
+- name: MYS ve GDYS repo kullanicilari olusturuluyor.
+  copy:
+     src: "{{ item.value.src }}"
+     dest: "{{ item.value. dest }}"
+     owner: "{{ item.value.owner }}"
+     group: "{{ item.value.group }}"
+     mode: "{{ item.value.mode }}"
+  notify: Gitolite-Admin repo degisiklikleri uygulaniyor.
+  with_dict: "gitolite_repo_users"
+  sudo: "yes"
+  tags: repo_users

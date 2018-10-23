@@ -1,0 +1,13 @@
+---
+# Paket degiskenlerini iceren dosyadir.
+# Yorum satiriyla gosterilen sablon doldurularak istenilen paketler eklenebilir.
+git_packages:
+   package01:
+      name: "git-core"
+      state: "latest"
+   package02:
+      name: "gitolite3"
+      state: "latest"
+#   packageXX:
+#      name:
+#      state:

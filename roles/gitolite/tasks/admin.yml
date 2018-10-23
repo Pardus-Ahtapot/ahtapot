@@ -1,0 +1,19 @@
+---
+- name: Gitolite yonetici grubu olusturuluyor.
+  group:
+     name: "{{ admin['group']['name']}}"
+     state: "{{ admin['group']['state'] }}"
+  sudo: "yes"
+  tags: admin
+
+- name: Gitolite yoneticisi olusturuluyor.
+  user:
+     name: "{{ admin['user']['name'] }}"
+     group: "{{ admin['user']['group'] }}"
+     home: "{{ admin['user']['home'] }}"
+     shell: "{{ admin['user']['shell'] }}"
+     password: "{{ admin['user']['password'] }}"
+     generate_ssh_key: "yes"
+     state: "{{ admin['user']['state'] }}"
+  sudo: "yes"
+  tags: admin

@@ -1,0 +1,15 @@
+---
+# Dizinleri iceren dosyadir.
+directories:
+    directory01:
+        path: "/etc/fw/gdys/files/"
+        group: "ahtapotops"
+        owner: "ahtapotops"
+        mode: "0750"
+        state: "directory"
+#    directoryXX:
+#        path: ""
+#        group: ""
+#        owner: ""
+#        mode: ""
+#        state: ""

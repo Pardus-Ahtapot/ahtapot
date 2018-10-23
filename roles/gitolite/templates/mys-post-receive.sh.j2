@@ -1,0 +1,10 @@
+#!/bin/bash
+
+/usr/bin/ssh -ntt -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ahtapotops@localhost -i /home/gitolite/.ssh/myshook
+
+EXIT=$?
+
+if [ "$EXIT" -ne 0 ]
+then
+	/usr/bin/logger -p local5.crit "MSY HOOK SSH Connection Failed!"
+fi

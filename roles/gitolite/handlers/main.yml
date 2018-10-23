@@ -1,0 +1,3 @@
+---
+# Gitolite'in isleyici dosyasidir.
+- include: repoupdate.yml

@@ -1,0 +1,22 @@
+---
+# Sunucu degiskenlerini iceren dosyadir.
+# Yorum satiri ile gosterilen sablon doldurularak istenilen kadar sunucu eklenebilir.
+
+hosts:
+# /etc/hosts yapilandirmasini belirtmektedir.
+    conf:
+        source: "hosts.j2"
+        destination: "/etc/hosts"
+        owner: "root"
+        group: "root"
+        mode: "0644"
+
+base_host_servers:
+    server01:
+        ip: "10.20.40.210"
+        fqdn: "ansible.mys.local"
+        hostname: "ansible"
+#    serverXX:
+#        ip: 
+#        fqdn:
+#        hostname: 

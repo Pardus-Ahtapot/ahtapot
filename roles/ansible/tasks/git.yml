@@ -1,0 +1,81 @@
+---
+- name: FWBuilder dosyasi (gdys.fwb) tasiniyor.
+  template:
+     src: "{{ repo_gdys['src'] }}"
+     dest: "{{ repo_gdys['dest'] }}"
+     owner: "{{ repo_gdys['owner'] }}"
+     group: "{{ repo_gdys['group'] }}"
+     mode: "{{ repo_gdys['mode'] }}"
+     backup: "{{ repo_gdys['backup'] }}"
+  register: result
+  tags: repo_init
+
+- name: (GDYS) Yerelde git reposu olusturuluyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} init"
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Yereldeki git reposu remote sunucuya gonderilmek icin ekleniyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} remote add origin {{ repo_gdys['addr'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Dosya icerikleri index'e ekleniyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} add --all"
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Kullanici posta adresi belirtiliyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} config --global user.email {{ repo_gdys['email'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Kullanici adi belirtiliyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} config --global user.name {{ repo_gdys['user'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Ilk commit yapiliyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} commit -m \"initial commit\""
+  when: result.changed
+  tags: repo_init
+
+- name: (GDYS) Yereldeki degisikler uzak sunucuya gonderiliyor.
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} push -u origin master"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Yerelde git reposu olusturuluyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} init"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Yereldeki git reposu remote sunucuya gonderilmek icin ekleniyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} remote add origin {{ repo_mys['addr'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Dosya icerikleri index'e ekleniyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} add --all"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Kullanici posta adresi belirtiliyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} config --global user.email {{ repo_mys['email'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Kullanici adi belirtiliyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} config --global user.name {{ repo_mys['user'] }}"
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Ilk commit yapiliyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} commit -m \"initial commit\""
+  when: result.changed
+  tags: repo_init
+
+- name: (MYS) Yereldeki degisikler uzak sunucuya gonderiliyor.
+  command: "/usr/bin/git -C {{ repo_mys['path'] }} push -u origin master"
+  when: result.changed
+  tags: repo_init

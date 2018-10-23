@@ -1,0 +1,13 @@
+---
+# Gitolite yoneticisinin degiskenlerini iceren dosyadir.
+admin:
+   group:
+      name: "gitolite"
+      state: "present"
+   user:
+      name: "gitolite"
+      group: "gitolite"
+      home: "/home/gitolite"
+      shell: "/bin/bash"
+      password: "$6$Hi2wAiQNgtu$lRwtt98x6XuQxMPRsi9votLPrXfDzkE9IKQozzAtnP3vRa0HhSjfG.m74OeFvw7YEj.x.WeAJPG4FSECIx3Jc/"
+      state: "present"

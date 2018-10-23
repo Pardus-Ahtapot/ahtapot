@@ -1,0 +1,18 @@
+---
+# Base rolunun gorevlerini iceren dosyadir
+- include: group.yml
+- include: user.yml
+- include: repo.yml
+- include: install.yml
+- include: hosts.yml
+- include: directory.yml
+- include: ssh.yml
+- include: ntp.yml
+- include: rsyslog.yml
+- include: grub.yml
+- include: audit.yml
+- include: sudo.yml
+- include: kernel_modules.yml
+- include: logger.yml
+- include: logrotate.yml
+- include: profile.yml

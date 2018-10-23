@@ -1,0 +1,14 @@
+## Bu dosya ansible tarafindan yonetilmektedir!
+## Burada yapilan degisikliklerin uzerine yazilir!!
+{{ ansible_managed }}
+
+repo gitolite-admin
+   RW+	=	id_rsa
+
+repo mys
+   RW+				= ahtapotops
+   option hook.post-receive	= mys-post-receive
+
+repo gdys
+   RW+				= ahtapotops
+   option hook.post-receive	= gdys-post-receive

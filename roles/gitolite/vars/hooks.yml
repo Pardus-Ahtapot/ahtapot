@@ -1,0 +1,44 @@
+---
+# Gitolite Repo hook'lari icin degiskenleri iceren dosyadir.
+gitolite_rc:
+   rc01:
+      dest: "/home/gitolite/.gitolite.rc"
+      regexp: ".*GL_ADMIN_BASE.*"
+      replace: "LOCAL_CODE =>  \"$rc{GL_ADMIN_BASE}/local\","
+   rc02:
+      dest: "/home/gitolite/.gitolite.rc"
+      regexp: "'gitweb'.*"
+      replace: "#'gitweb',"
+   rc03:
+      dest: "/home/gitolite/.gitolite.rc"
+      regexp: "# 'repo-specific-hooks',"
+      replace: "'repo-specific-hooks',"
+
+hook_directory:
+   path: "/home/gitolite/gitolite-admin/local/hooks/repo-specific/"
+   owner: "gitolite"
+   group: "gitolite"
+   mode: "0755"
+   state: "directory"
+
+hook_scripts:
+   script01:
+      src: "mys-post-receive.sh.j2"
+      dest: "/home/gitolite/gitolite-admin/local/hooks/repo-specific/mys-post-receive"
+      owner: "gitolite"
+      group: "gitolite"
+      mode: "0755"
+   script02:
+      src: "gdys-post-receive.sh.j2"
+      dest: "/home/gitolite/gitolite-admin/local/hooks/repo-specific/gdys-post-receive"
+      owner: "gitolite"
+      group: "gitolite"
+      mode: "0755"
+
+hook_keys:
+   key01:
+      name: "/home/gitolite/.ssh/myshook"
+      option: "command='\"/usr/bin/mys.sh\"',no-port-forwarding,no-X11-forwarding"
+   key02:
+      name: "/home/gitolite/.ssh/gdyshook"
+      option: "command='\"/usr/bin/gdys.sh\"',no-port-forwarding,no-X11-forwarding"

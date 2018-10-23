@@ -1,0 +1,19 @@
+---
+# Git repolarini otomatik olusturmak icin gerekli degiskenleri iceren dosyadir.
+repo_gdys:
+   src: "gdys.fwb.j2"
+   dest: "/etc/fw/gdys/gdys.fwb"
+   owner: "ahtapotops"
+   group: "ahtapotops"
+   mode: "0744"
+   backup: "yes"
+   path: "/etc/fw/gdys/"
+   addr: "gitolite@localhost:gdys.git"
+   email: "gitplaybook@ahtapot"
+   user: "Git Playbook"
+
+repo_mys:
+   path: "/etc/ansible/"
+   addr: "gitolite@localhost:mys.git"
+   email: "gitplaybook@ahtapot"
+   user: "Git Playbook"
