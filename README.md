@@ -12,4 +12,4 @@ Diğer bağlantılar:
 
 * https://github.com/Pardus-Ahtapot
 * http://www.pardus.org.tr/projeler/ahtapot/
-* http://ftp.pardus.org.tr/pub/ISO/Ahtapot/
+* http://ahtapot.org.tr/indirmeler.html
