@@ -6,6 +6,6 @@
         owner: "{{ item.value.owner }}"
         group: "{{ item.value.group }}"
         mode: "{{ item.value.mode }}"
-  with_dict: "logrotate_scripts"
+  with_dict: "{{ logrotate_scripts }}"
   sudo: yes
   tags: logrotate
