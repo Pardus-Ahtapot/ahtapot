@@ -29,6 +29,6 @@
      group: "{{ item.value.group }}"
      mode: "{{ item.value.mode }}"
   notify: Gitolite-Admin repo degisiklikleri uygulaniyor.
-  with_dict: "gitolite_repo_users"
+  with_dict: "{{gitolite_repo_users}}"
   sudo: "yes"
   tags: repo_users
