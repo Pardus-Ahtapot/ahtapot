@@ -30,8 +30,8 @@
      mode: "{{ item.value.mode }}"
   with_dict: "{{hook_scripts}}"
   notify: Gitolite-Admin repo degisiklikleri uygulaniyor.
-  sudo: "yes"
-  sudo_user: "gitolite"
+  become: true
+  become_user: root
   register: result
   tags: hook
 
