@@ -4,7 +4,7 @@
      dest: "{{ item.value.dest }}"
      regexp: "{{ item.value.regexp }}"
      replace: "{{ item.value.replace }}"
-  with_dict: "gitolite_rc"
+  with_dict: "{{gitolite_rc}}"
   sudo: "yes"
   sudo_user: "gitolite"
   tags: hook
@@ -28,16 +28,16 @@
      owner: "{{ item.value.owner }}"
      group: "{{ item.value.group }}"
      mode: "{{ item.value.mode }}"
-  with_dict: "hook_scripts"
+  with_dict: "{{hook_scripts}}"
   notify: Gitolite-Admin repo degisiklikleri uygulaniyor.
-  sudo: "yes"
-  sudo_user: "gitolite"
+  become: true
+  become_user: root
   register: result
   tags: hook
 
 - name: MYS ve GDYS hook anahtarlari olusturuluyor.
   command: "/usr/bin/ssh-keygen -t rsa -f {{ item.value.name }} -N ''"
-  with_dict: "hook_keys"
+  with_dict: "{{hook_keys}}"
   sudo: "yes"
   sudo_user: "gitolite"
   when: result.changed
@@ -47,7 +47,7 @@
   shell: "/usr/bin/paste <(/bin/echo {{ item.value.option }}) {{ item.value.name }}.pub -d ' ' >> /home/ahtapotops/.ssh/authorized_keys"
   args:
      executable: "/bin/bash"
-  with_dict: "hook_keys"  
+  with_dict: "{{hook_keys}}"  
   sudo: "yes"
   when: result.changed
   tags: repokeys

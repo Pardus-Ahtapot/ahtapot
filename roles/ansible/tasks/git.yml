@@ -41,7 +41,7 @@
   tags: repo_init
 
 - name: (GDYS) Yereldeki degisikler uzak sunucuya gonderiliyor.
-  command: "/usr/bin/git -C {{ repo_gdys['path'] }} push -u origin master"
+  command: "/usr/bin/git -C {{ repo_gdys['path'] }} push --set-upstream origin master"
   when: result.changed
   tags: repo_init
 
